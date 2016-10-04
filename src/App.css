@@ -1,33 +1,37 @@
 .Sentence {
   width: 90%;
   margin-left: 5%;
+  /*text-align: center;*/
 }
 
 .SentenceWord {
   height: 300px;
   display: inline-block;
-  padding-right: 1ch;
-  padding-left: 1ch;
-  min-width: 3ch;
-  font-size: 32px;
+  padding-right: .5ch;
+  padding-left: .5ch;
+  min-width: 2ch;
+  font-size: 22px;
 }
 
 .SentenceWord > div {
 }
 
 .flank {
+  min-width: 2ch;
   height: 40%;
   position: relative;
+  /*background-color: rgba(240, 240, 240, .5);*/
 }
 
 .bar {
   width: 2ch;
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .topBar {
   background-color: rgba(220, 255, 220, 1);
-  position: absolute;
   bottom: 0;
 }
 .botBar {
