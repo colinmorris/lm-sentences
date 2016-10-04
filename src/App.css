@@ -1,10 +1,46 @@
-.App {
+.Sentence {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.SentenceWord {
+  height: 300px;
+  display: inline-block;
+  padding-right: 1ch;
+  padding-left: 1ch;
+  min-width: 3ch;
+  font-size: 32px;
+}
+
+.SentenceWord > div {
+}
+
+.flank {
+  height: 40%;
+  position: relative;
+}
+
+.bar {
+  width: 2ch;
+  margin: 0 auto;
+}
+
+.topBar {
+  background-color: rgba(220, 255, 220, 1);
+  position: absolute;
+  bottom: 0;
+}
+.botBar {
+  background-color: rgba(255, 220, 220, 1);
+}
+
+
+.SentenceWord .word {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+/* Boilerplate below */
+.App {
 }
 
 .App-header {
@@ -18,7 +54,3 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
