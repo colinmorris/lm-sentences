@@ -4,6 +4,11 @@
   /*text-align: center;*/
 }
 
+.Sentence h2 a {
+  margin-right: 1ch;
+  font-size: larger;
+}
+
 .SentenceWord {
   height: 300px;
   display: inline-block;
@@ -52,9 +57,5 @@
   height: 150px;
   padding: 20px;
   color: white;
-}
-
-.App-intro {
-  font-size: large;
 }
 
