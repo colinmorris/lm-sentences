@@ -120,7 +120,7 @@ class Sentence extends Component {
       </Link>
       </h2>
       <h3>Avg. bits/word: {this.props.sent.ppx.toFixed(0)}</h3>
-      <div>
+      <div className="Sentence-words">
         {this.props.sent.words.map( (w,i) => {
           return (
           <SentenceWord 
@@ -228,7 +228,7 @@ class App extends Component {
         {indices.map( (i) => {
           return <Sentence sent={sentences[i]} key={i} sid={i} corpus={corpus} />})}
         {this.state.maxSentences < sentences.length ? 
-          <div className="center-block">
+          <div className="center-block moreButtons" style={{width:'20%', marginTop: 10}}>
             <Button bsStyle="primary" bsSize="large" onClick={this.more}>
               10 More
             </Button>

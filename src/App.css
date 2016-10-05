@@ -1,3 +1,13 @@
+.Sentence-words {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.moreButtons button {
+  margin: 10px;
+}
+
 .Sentence {
   width: 90%;
   margin-left: 5%;
