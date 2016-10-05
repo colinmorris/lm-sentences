@@ -5,7 +5,8 @@ import './App.css';
 //import { OverlayTrigger } from 'react-bootstrap/lib/OverlayTrigger';
 //import { Tooltip } from 'react-bootstrap/lib/Tooltip';
 import { Button, ButtonGroup, Nav, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { browserHistory, Router, Route, Link } from 'react-router';
+import { useRouterHistory, hashHistory, Router, Route, Link } from 'react-router';
+import { createHashHistory } from 'history';
 import { LinkContainer } from 'react-router-bootstrap';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
@@ -252,8 +253,9 @@ class App extends Component {
 
 class Main extends Component {
   render() {
+    const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
     return (
-    <Router history={browserHistory}>
+    <Router history={appHistory}>
       <Route path="/(:corpus)" component={App}>
       </Route>
       <Route path="/:corpus/:sid" component={SoloSentence} />
