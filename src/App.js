@@ -14,6 +14,8 @@ import PureRenderMixin from 'react-addons-pure-render-mixin';
 */
 import {SENTENCE_DATA} from './sentence-data';
 
+const MAX_BAR_HEIGHT = 100;
+
 /* Map a word perplexity to a score in the range [-1, 1].
  * Turns out ppx will actually be a log perplexity - I named
  * a bunch of variables wrong up to this point. oops.
@@ -73,18 +75,23 @@ class SentenceWord extends Component {
   render() {
     var score = ppx_scale(this.props.ppx);
     const minheight = 5;
-    var barStyle = {height: minheight + Math.abs(score)*(100-minheight) + "%"};
+    var barStyle = {height: minheight + Math.abs(score)*(MAX_BAR_HEIGHT-minheight)};
     var tooltip = (
       <Tooltip 
         id={'wordtooltip-' + this.props.sid + '-' + this.props.wid}>
         Probability estimate: {prob_string(this.props.ppx)}
       </Tooltip>
     );
+    // Haha, this is stuuuupid. Hack to let bars 'float:bottom', but adding a shadow
+    // copy not removed from the normal flow.
     var bar = (
+      <div>
       <OverlayTrigger onEnter={this.hovered} onExit={this.dehovered} 
       placement="right" overlay={tooltip} trigger={['hover', 'focus']}>
         <div className={score >= 0 ? "topBar bar" : "botBar bar"} style={barStyle}></div>
       </OverlayTrigger>
+      <div style={barStyle} className="shadowBar"></div>
+      </div>
     );
     return (
     <div className={"SentenceWord" + (this.state.hover ? " hov" : "")}>
