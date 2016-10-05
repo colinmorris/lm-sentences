@@ -59,7 +59,17 @@ class SentenceWord extends Component {
   constructor(props) {
     super(props);
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+    this.state = {hover: false};
+    this.hovered = this.hovered.bind(this);
+    this.dehovered = this.dehovered.bind(this);
   }
+  hovered() {
+    this.setState({hover: true});
+  }
+  dehovered() {
+    this.setState({hover: false});
+  }
+    
   render() {
     var score = ppx_scale(this.props.ppx);
     const minheight = 5;
@@ -71,16 +81,20 @@ class SentenceWord extends Component {
       </Tooltip>
     );
     var bar = (
-      <OverlayTrigger placement="right" overlay={tooltip} trigger={['hover', 'focus']}>
+      <OverlayTrigger onEnter={this.hovered} onExit={this.dehovered} 
+      placement="right" overlay={tooltip} trigger={['hover', 'focus']}>
         <div className={score >= 0 ? "topBar bar" : "botBar bar"} style={barStyle}></div>
       </OverlayTrigger>
     );
     return (
-    <div className="SentenceWord">
+    <div className={"SentenceWord" + (this.state.hover ? " hov" : "")}>
       <div className="top flank">
         {(score >= 0) ? bar : null }
       </div>
-      <div className="word">{this.props.word}</div>
+      <OverlayTrigger onEnter={this.hovered} onExit={this.dehovered} 
+      delayShow={500} placement="right" overlay={tooltip} trigger={['hover', 'focus']}>
+        <div className="word">{this.props.word}</div>
+      </OverlayTrigger>
       <div className="bot flank">
         {(score < 0) ? bar : null }
       </div>

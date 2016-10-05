@@ -41,11 +41,22 @@ h2 .glyphicon {
 }
 
 .topBar {
-  background-color: rgba(220, 255, 220, 1);
+  background-color: rgba(85, 175, 85, .3);
   bottom: 0;
 }
 .botBar {
-  background-color: rgba(255, 220, 220, 1);
+  background-color: rgba(208, 55, 55, .3);
+}
+.SentenceWord.hov .topBar {
+  background-color: rgba(85, 175, 85, 1);
+}
+.SentenceWord.hov .botBar {
+  background-color: rgba(208, 55, 55, 1);
+}
+
+.SentenceWord.hov .word {
+  /* too jumpy :/ */
+  /*font-weight: bold;*/
 }
 
 
