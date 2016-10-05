@@ -51,7 +51,6 @@ function prob_string(log_ppx) {
       // it works, trust me
       (Math.log10(1-p)*-1)-1
     );
-    // TODO: clamp to range
     return (100*p).toFixed(digits) + "%";
   } else {
     return "1 in " + ppx.toLocaleString(undefined, {maximumSignificantDigits:1});
@@ -76,6 +75,7 @@ class SentenceWord extends Component {
   render() {
     var score = ppx_scale(this.props.ppx);
     const minheight = 5;
+    // TODO: clamp to range
     var barStyle = {height: minheight + Math.abs(score)*(MAX_BAR_HEIGHT-minheight)};
     var tooltip = (
       <Tooltip 
@@ -117,7 +117,6 @@ class Sentence extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
   render() {
-    //var style = {height: 600, width: '90%'};
     var style = {};
     var id = this.props.sid;
     return (
@@ -168,13 +167,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     var ms = 10;
-    if (window.location.hash) {
-      // have to slice out the '#'
-      var headstart = nearestTen( window.location.hash.slice(1));
-      if (!isNaN(headstart)) {
-        ms = Math.max(ms, headstart);
-      }
-    }
     this.state = {corpus: "bill", maxSentences:ms, sort:undefined};
     this.handleNav = this.handleNav.bind(this);
     this.more = this.moreSentences.bind(this);
@@ -194,7 +186,6 @@ class App extends Component {
     if (!corpus) {
       corpus = "bill";
     }
-    //var sentences = SENTENCE_DATA[corpus].slice(0, this.state.maxSentences);
     var sentences = SENTENCE_DATA[corpus];
     var indices = [];
     var idxlimit = this.state.maxSentences === undefined ? sentences.length : this.state.maxSentences;
