@@ -1,7 +1,4 @@
 .Sentence-words {
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  padding: 10px;
 }
 
 .moreButtons button {
@@ -9,7 +6,15 @@
 }
 
 .Sentence {
-  width: 90%;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 5px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  /*width: 90%;*/
+  /* TODO: Bleh, why doesn't this work? Would like to shrink these down
+  to fit content. But they always expand to fill as much width as possible.*/
+  max-width: 90%;
   margin-left: 5%;
   /*text-align: center;*/
 }
@@ -74,9 +79,6 @@ h2 .glyphicon {
 }
 
 /* Boilerplate below */
-.App {
-}
-
 .App-header {
   background-color: #222;
   height: 150px;

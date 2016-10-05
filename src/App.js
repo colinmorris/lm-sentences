@@ -103,7 +103,7 @@ class SentenceList extends Component {
 class Wrapper extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="container-fluid">
         <div className="App-header">
           <h2>Welcome to React</h2>
         </div>
