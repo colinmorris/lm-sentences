@@ -2,7 +2,9 @@
   "name": "perplexity-vis",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://colinmorris.github.io/lm-sentences",
   "devDependencies": {
+    "gh-pages": "^0.11.0",
     "react-scripts": "0.6.1"
   },
   "dependencies": {
@@ -17,6 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   }
 }
