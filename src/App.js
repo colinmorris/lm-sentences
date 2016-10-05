@@ -7,6 +7,7 @@ import './App.css';
 import { Button, ButtonGroup, Nav, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { browserHistory, Router, Route, Link } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 /** Auto-generated data file. Totally not the right way to do this, but I don't
   want to add jquery as a dependency just for requests.
@@ -55,6 +56,10 @@ function prob_string(log_ppx) {
 }
 
 class SentenceWord extends Component {
+  constructor(props) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
   render() {
     var score = ppx_scale(this.props.ppx);
     const minheight = 5;
@@ -85,6 +90,10 @@ class SentenceWord extends Component {
 }
 
 class Sentence extends Component {
+  constructor(props) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
   render() {
     //var style = {height: 600, width: '90%'};
     var style = {};
@@ -113,6 +122,10 @@ class Sentence extends Component {
 }
 
 class SoloSentence extends Component {
+  constructor(props) {
+    super(props);
+    this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+  }
   render() {
     return (
     <div>
