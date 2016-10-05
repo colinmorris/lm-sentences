@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import './index.css';
 import './App.css';
 // These more granular imports are supposed to work, but seems like they don't?
 //import { OverlayTrigger } from 'react-bootstrap/lib/OverlayTrigger';
 //import { Tooltip } from 'react-bootstrap/lib/Tooltip';
-import { Button, Nav, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { Button, ButtonGroup, Nav, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { browserHistory, Router, Route, Link } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
 
 /** Auto-generated data file. Totally not the right way to do this, but I don't
   want to add jquery as a dependency just for requests.
@@ -27,7 +30,6 @@ function ppx_scale(ppx) {
   } else {
     // log scale
     score = ppx;
-    //range = [Math.log(1/.01), 17];
     range = [17, thresh];
   }
   // normalize to range [0, 1]
@@ -89,8 +91,12 @@ class Sentence extends Component {
     var id = this.props.sid;
     return (
       <div id={id} className="Sentence" style={style}>
-      <h2><a href={'#'+id}>#{this.props.sid}</a> 
-      Avg. bits/word: {this.props.sent.ppx.toFixed(0)}</h2>
+      <h2>#{id} 
+      <Link to={`/${this.props.corpus}/${this.props.sid}`}>
+        <span className="glyphicon glyphicon-link"></span>
+      </Link>
+      </h2>
+      <h3>Avg. bits/word: {this.props.sent.ppx.toFixed(0)}</h3>
       <div>
         {this.props.sent.words.map( (w,i) => {
           return (
@@ -102,6 +108,19 @@ class Sentence extends Component {
         })}
       </div>
       </div>
+    );
+  }
+}
+
+class SoloSentence extends Component {
+  render() {
+    return (
+    <div>
+      Here is a sentence:
+      <Sentence 
+        sent={SENTENCE_DATA[this.props.params.corpus][this.props.params.sid]}
+        sid={this.props.params.sid} corpus={this.props.params.corpus} />
+    </div>
     );
   }
 }
@@ -121,7 +140,7 @@ class App extends Component {
         ms = Math.max(ms, headstart);
       }
     }
-    this.state = {corpus: "bill", maxSentences:ms};
+    this.state = {corpus: "bill", maxSentences:ms, sort:undefined};
     this.handleNav = this.handleNav.bind(this);
     this.more = this.moreSentences.bind(this);
     this.flood = this.openFloodgates.bind(this);
@@ -136,32 +155,78 @@ class App extends Component {
     this.setState({maxSentences:this.state.maxSentences+10});
   }
   render() {
+    var corpus = this.props.params.corpus;
+    if (!corpus) {
+      corpus = "bill";
+    }
+    //var sentences = SENTENCE_DATA[corpus].slice(0, this.state.maxSentences);
+    var sentences = SENTENCE_DATA[corpus];
+    var indices = [];
+    var idxlimit = this.state.maxSentences === undefined ? sentences.length : this.state.maxSentences;
+    for (var i=0; i < idxlimit; i++) {
+      indices.push(i);
+    }
+    if (this.state.sort) {
+      indices.sort((a,b) => {
+        if (this.state.sort === 'desc') {
+          var tmp = b;
+          b = a;
+          a = tmp;
+        }
+        return sentences[a].ppx - sentences[b].ppx;
+      });
+    }
     return (
       <div className="App">
         <div className="App-header">
           <h2>Welcome to React</h2>
         </div>
-        <Nav bsStyle="pills" activeKey={this.state.corpus}>
-          <NavItem onSelect={this.handleNav} eventKey="bill">Billion word benchmark</NavItem>
-          <NavItem onSelect={this.handleNav} eventKey="brown_news">Brown Corpus (news)</NavItem>
-          <NavItem onSelect={this.handleNav} eventKey="brown_romance">Brown Corpus (romance)</NavItem>
+
+        <Nav bsStyle="pills">
+          <LinkContainer to="/bill"><NavItem>Billion word benchmark</NavItem></LinkContainer>
+          <LinkContainer to="/brown_news"><NavItem>Brown Corpus (news)</NavItem></LinkContainer>
+          <LinkContainer to="/brown_romance"><NavItem>Brown Corpus (romance)</NavItem></LinkContainer>
         </Nav>
-        {SENTENCE_DATA[this.state.corpus].slice(0,this.state.maxSentences).map( (s, i) => {
-          return <Sentence sent={s} key={i} sid={i} />})}
-        {this.state.maxSentences < SENTENCE_DATA[this.state.corpus].length ? 
+        Sort by...
+        <ButtonGroup>
+          <Button active={this.state.sort==='desc'} onClick={()=>{this.setState({sort:'desc'});}}>
+            Least probable
+          </Button>
+          <Button active={this.state.sort==='asc'} onClick={()=>{this.setState({sort:'asc'});}}>
+          Most probable</Button>
+          <Button active={this.state.sort===undefined} onClick={()=>{this.setState({sort:undefined});}}>
+          None</Button>
+        </ButtonGroup>
+
+        {indices.map( (i) => {
+          return <Sentence sent={sentences[i]} key={i} sid={i} corpus={corpus} />})}
+        {this.state.maxSentences < sentences.length ? 
           <div className="center-block">
             <Button bsStyle="primary" bsSize="large" onClick={this.more}>
               10 More
             </Button>
             <Button bsStyle="primary" bsSize="large" onClick={this.flood}>
-              Show all ({SENTENCE_DATA[this.state.corpus].length})
+              Show all ({sentences.length})
             </Button>
           </div>
           : null}
       </div>
     );
+    // TODO: Should loading more sentences reset the sort?
   }
 }
 
+class Main extends Component {
+  render() {
+    return (
+    <Router history={browserHistory}>
+      <Route path="/(:corpus)" component={App}>
+      </Route>
+      <Route path="/:corpus/:sid" component={SoloSentence} />
+    </Router>
+    );
+  }
+}
 
-export default App;
+export default Main;
+

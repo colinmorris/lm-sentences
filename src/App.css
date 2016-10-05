@@ -4,6 +4,11 @@
   /*text-align: center;*/
 }
 
+h2 .glyphicon {
+  margin-left: 3ch;
+  font-size: 60%;
+}
+
 .Sentence h2 a {
   margin-right: 1ch;
   font-size: larger;
