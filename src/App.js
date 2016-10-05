@@ -6,7 +6,8 @@ import { IndexRoute, useRouterHistory, Router, Route } from 'react-router';
 import { createHashHistory } from 'history';
 import { LinkContainer } from 'react-router-bootstrap';
 import { PureRenderMixin } from 'react-addons-pure-render-mixin';
-import Sentence from './Sentence';
+import { Sentence } from './Sentence';
+import { Blog } from './Blog';
 
 /** Auto-generated data file. Totally not the right way to do this, but I don't
   want to add jquery as a dependency just for requests.
@@ -49,7 +50,7 @@ class SentenceList extends Component {
   }
   render() {
     var corpus = this.props.params.corpus;
-    if (!corpus) {
+    if (!corpus || corpus === "billion_words") {
       corpus = "bill";
     }
     var sentences = SENTENCE_DATA[corpus];
@@ -82,7 +83,7 @@ class SentenceList extends Component {
         </ButtonGroup>
 
         {indices.map( (i) => {
-          return <Sentence key={i} sid={i} corpus={corpus} />})}
+          return <Sentence key={i} sid={i} corpus={corpus} number={true} />})}
         {this.state.maxSentences < sentences.length ? 
           <div className="center-block moreButtons" style={{width:'20%', marginTop: 10}}>
             <Button bsStyle="primary" bsSize="large" onClick={this.more}>
@@ -109,7 +110,7 @@ class Wrapper extends Component {
 
         <Nav bsStyle="pills">
           <LinkContainer to="/" onlyActiveOnIndex={true}><NavItem>Intro</NavItem></LinkContainer>
-          <LinkContainer to="/bill"><NavItem>Billion word benchmark</NavItem></LinkContainer>
+          <LinkContainer to="/billion_words"><NavItem>Billion word benchmark</NavItem></LinkContainer>
           <LinkContainer to="/brown_news"><NavItem>Brown Corpus (news)</NavItem></LinkContainer>
           <LinkContainer to="/brown_romance"><NavItem>Brown Corpus (romance)</NavItem></LinkContainer>
         </Nav>
@@ -119,13 +120,7 @@ class Wrapper extends Component {
   }
 }
 
-class Blog extends Component {
-  render() {
-    return (
-      <h3>Here is my superrrr blog</h3>
-    );
-  }
-}
+
 
 class Main extends Component {
   render() {
