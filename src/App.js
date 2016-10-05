@@ -5,7 +5,7 @@ import './App.css';
 //import { OverlayTrigger } from 'react-bootstrap/lib/OverlayTrigger';
 //import { Tooltip } from 'react-bootstrap/lib/Tooltip';
 import { Button, ButtonGroup, Nav, NavItem, OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { useRouterHistory, hashHistory, Router, Route, Link } from 'react-router';
+import { IndexRoute, useRouterHistory, Router, Route, Link } from 'react-router';
 import { createHashHistory } from 'history';
 import { LinkContainer } from 'react-router-bootstrap';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -159,11 +159,7 @@ class SoloSentence extends Component {
   }
 }
 
-function nearestTen(n) {
-  return n + (10 - (n % 10));
-}
-
-class App extends Component {
+class SentenceList extends Component {
   constructor(props) {
     super(props);
     var ms = 10;
@@ -203,16 +199,7 @@ class App extends Component {
       });
     }
     return (
-      <div className="App">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
-        </div>
-
-        <Nav bsStyle="pills">
-          <LinkContainer to="/bill"><NavItem>Billion word benchmark</NavItem></LinkContainer>
-          <LinkContainer to="/brown_news"><NavItem>Brown Corpus (news)</NavItem></LinkContainer>
-          <LinkContainer to="/brown_romance"><NavItem>Brown Corpus (romance)</NavItem></LinkContainer>
-        </Nav>
+      <div>
         Sort by...
         <ButtonGroup>
           <Button active={this.state.sort==='desc'} onClick={()=>{this.setState({sort:'desc'});}}>
@@ -242,14 +229,44 @@ class App extends Component {
   }
 }
 
+class Wrapper extends Component {
+  render() {
+    return (
+      <div className="App">
+        <div className="App-header">
+          <h2>Welcome to React</h2>
+        </div>
+
+        <Nav bsStyle="pills">
+          <LinkContainer to="/" onlyActiveOnIndex={true}><NavItem>Intro</NavItem></LinkContainer>
+          <LinkContainer to="/bill"><NavItem>Billion word benchmark</NavItem></LinkContainer>
+          <LinkContainer to="/brown_news"><NavItem>Brown Corpus (news)</NavItem></LinkContainer>
+          <LinkContainer to="/brown_romance"><NavItem>Brown Corpus (romance)</NavItem></LinkContainer>
+        </Nav>
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+class Blog extends Component {
+  render() {
+    return (
+      <h3>Here is my superrrr blog</h3>
+    );
+  }
+}
+
 class Main extends Component {
   render() {
     const appHistory = useRouterHistory(createHashHistory)({ queryKey: false });
     return (
     <Router history={appHistory}>
-      <Route path="/(:corpus)" component={App}>
+      <Route path="/" component={Wrapper}>
+        <IndexRoute component={Blog} />
+        <Route path=":corpus" component={SentenceList} />
+        <Route path=":corpus/:sid" component={SoloSentence} />
       </Route>
-      <Route path="/:corpus/:sid" component={SoloSentence} />
     </Router>
     );
   }
