@@ -117,18 +117,18 @@ class Sentence extends Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
   render() {
-    var style = {};
-    var id = this.props.sid;
+    const id = this.props.sid;
+    const sent = SENTENCE_DATA[this.props.corpus][this.props.sid];
     return (
-      <div id={id} className="Sentence" style={style}>
+      <div id={id} className="Sentence">
       <h2>#{id} 
       <Link to={`/${this.props.corpus}/${this.props.sid}`}>
         <span className="glyphicon glyphicon-link"></span>
       </Link>
       </h2>
-      <h3>Avg. bits/word: {this.props.sent.ppx.toFixed(0)}</h3>
+      <h3>Avg. bits/word: {sent.ppx.toFixed(0)}</h3>
       <div className="Sentence-words">
-        {this.props.sent.words.map( (w,i) => {
+        {sent.words.map( (w,i) => {
           return (
           <SentenceWord 
             word={w.word} 
@@ -152,7 +152,6 @@ class SoloSentence extends Component {
     <div>
       Here is a sentence:
       <Sentence 
-        sent={SENTENCE_DATA[this.props.params.corpus][this.props.params.sid]}
         sid={this.props.params.sid} corpus={this.props.params.corpus} />
     </div>
     );
@@ -212,7 +211,7 @@ class SentenceList extends Component {
         </ButtonGroup>
 
         {indices.map( (i) => {
-          return <Sentence sent={sentences[i]} key={i} sid={i} corpus={corpus} />})}
+          return <Sentence key={i} sid={i} corpus={corpus} />})}
         {this.state.maxSentences < sentences.length ? 
           <div className="center-block moreButtons" style={{width:'20%', marginTop: 10}}>
             <Button bsStyle="primary" bsSize="large" onClick={this.more}>
