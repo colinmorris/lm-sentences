@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import './App.css';
-import { Button, ButtonGroup, Nav, NavItem } from 'react-bootstrap';
+import { Navbar, Button, ButtonGroup, Nav, NavItem } from 'react-bootstrap';
 import { IndexRoute, useRouterHistory, Router, Route } from 'react-router';
 import { createHashHistory } from 'history';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -104,16 +104,20 @@ class Wrapper extends Component {
   render() {
     return (
       <div className="container-fluid">
-        <div className="App-header">
-          <h2>Welcome to React</h2>
-        </div>
+        <Navbar inverse>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <span>Perplexing Sentences</span>
+            </Navbar.Brand>
+          </Navbar.Header>
+          <Nav bsStyle="pills">
+            <LinkContainer to="/" onlyActiveOnIndex={true}><NavItem>Intro</NavItem></LinkContainer>
+            <LinkContainer to="/billion_words"><NavItem>Billion word benchmark</NavItem></LinkContainer>
+            <LinkContainer to="/brown_news"><NavItem>Brown Corpus (news)</NavItem></LinkContainer>
+            <LinkContainer to="/brown_romance"><NavItem>Brown Corpus (romance)</NavItem></LinkContainer>
+          </Nav>
+        </Navbar>
 
-        <Nav bsStyle="pills">
-          <LinkContainer to="/" onlyActiveOnIndex={true}><NavItem>Intro</NavItem></LinkContainer>
-          <LinkContainer to="/billion_words"><NavItem>Billion word benchmark</NavItem></LinkContainer>
-          <LinkContainer to="/brown_news"><NavItem>Brown Corpus (news)</NavItem></LinkContainer>
-          <LinkContainer to="/brown_romance"><NavItem>Brown Corpus (romance)</NavItem></LinkContainer>
-        </Nav>
         {this.props.children}
       </div>
     );

@@ -1,0 +1,23 @@
+p {
+  font-family: Helvetica, Arial, sans-serif;
+  width: 75%;
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+.blogWrapper > * {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#ppxPlot {
+  max-width: 800px;
+}
+
+.title {
+  margin-left: 12.5%;
+  margin-bottom: 2ex;
+  margin-top: 3ex;
+}
