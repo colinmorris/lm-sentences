@@ -1,4 +1,27 @@
+.icon > svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  vertical-align: middle;
+}
+.footerCol-1 {
+  float: right;
+  margin-right: 10px;
+}
+.footerCol-2 {
+  float: left;
+}
 .Sentence-words {
+}
+
+footer {
+  border-top: 1px solid #e8e8e8;
+  margin-top: 15px;
+}
+
+footer > div {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .moreButtons button {
@@ -11,10 +34,8 @@
   padding: 5px;
   margin-top: 30px;
   margin-bottom: 30px;
-  /*width: 90%;*/
-  /* TODO: Bleh, why doesn't this work? Would like to shrink these down
-  to fit content. But they always expand to fill as much width as possible.*/
   max-width: 90%;
+  display: inline-block;
   margin-left: 5%;
   /*text-align: center;*/
 }

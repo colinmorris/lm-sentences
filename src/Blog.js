@@ -42,7 +42,7 @@ It looks like this sentence was actually taken from <a href="http://dotearth.blo
 <Sentence corpus="bill" sid={36} />
 
 <p>
-Wow, it hits every word out of the park except the first. (The model ingests sentences independently, with no context on what came before the beginning of the sentence. So basically all it can do is predict each word according to how often it appears as the first word.)
+Wow, it hits every word out of the park except the first. (The model ingests sentences independently, with no context on what came before the beginning of the sentence. The first word usually has low probability, because the model is flying blind at that point.)
 </p>
 
 <p>
@@ -125,7 +125,7 @@ Steamy, right? Unlike the news, the content here is pretty timeless - there are 
 <p>The romance dataset has a lower median than news, but its weirdest sentences are weirder. They both end up with an average perplexity of about 80, more than double the 30 perplexity achieved on the Billion Words dataset. (I only evaluated around 100 sentences for each of the Brown categories. Inference takes a few minutes per sentence, because computing the softmax probabilities for all ~1m words in the vocabulary is expensive.)</p>
 
 <p>
-There are lots more annotated sentences from the <Link to="/billion_words">Billion Words</Link>, <Link to="/brown_news">Brown (news)</Link> and <Link to="/brown_romance">Brown (romance)</Link> datasets, if you want to explore. The code for crunching the LM data and for these visualizations is available on Github <a href="https://github.com/colinmorris/lm1b-notebook">here</a> and <a href="https://github.com/colinmorris/lm-sentences">here</a> respectively.
+The above sentences were hand-picked as illustrative examples, but if you want to explore a random selection, there are many more annotated sentences from each corpus: <Link to="/billion_words">Billion Words</Link>, <Link to="/brown_news">Brown (news)</Link> and <Link to="/brown_romance">Brown (romance)</Link>. The code for crunching the LM data and for these visualizations is available on Github <a href="https://github.com/colinmorris/lm1b-notebook">here</a> and <a href="https://github.com/colinmorris/lm-sentences">here</a> respectively.
 </p>
 
 </div>
