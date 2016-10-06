@@ -1,3 +1,39 @@
+.navbar-brand {
+  font-size: 24px;
+}
+nav li {
+  font-size: 18px;
+}
+nav > div {
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+/** I'm kind of proud that I figured out how to do this, but I don't think it
+helped in the end. :(
+.navCorpusLeft::before {
+  color: #999999;
+  content: '\007B';
+  position: absolute;
+  top: -2px;
+  right: 175px;
+  white-space: nowrap;
+  font-size: 36px;
+}
+.navCorpusLeft {
+  margin-left: 80px !important;
+}
+.navCorpusRight::after {
+  color: #999999;
+  content: '\007D';
+  position: absolute;
+  right: -5px;
+  top: -2px;
+  font-size: 36px;
+}
+**/
+.brand {
+  margin-right: 80px;
+}
 .icon > svg {
   width: 20px;
   height: 20px;

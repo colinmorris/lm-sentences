@@ -119,14 +119,13 @@ class Wrapper extends Component {
         <Navbar inverse>
           <Navbar.Header>
             <Navbar.Brand>
-              <Link to="/"><span>Perplexing Sentences</span></Link>
+              <Link className="brand" to="/"><span>Perplexing Sentences</span></Link>
             </Navbar.Brand>
           </Navbar.Header>
           <Nav bsStyle="pills">
-            <LinkContainer to="/" onlyActiveOnIndex={true}><NavItem>Intro</NavItem></LinkContainer>
-            <LinkContainer to="/billion_words"><NavItem>Billion word benchmark</NavItem></LinkContainer>
+            <LinkContainer className="bookend navCorpusLeft" to="/billion_words"><NavItem>Billion word benchmark</NavItem></LinkContainer>
             <LinkContainer to="/brown_news"><NavItem>Brown Corpus (news)</NavItem></LinkContainer>
-            <LinkContainer to="/brown_romance"><NavItem>Brown Corpus (romance)</NavItem></LinkContainer>
+            <LinkContainer className="bookend navCorpusRight" to="/brown_romance"><NavItem>Brown Corpus (romance)</NavItem></LinkContainer>
           </Nav>
         </Navbar>
 
