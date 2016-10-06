@@ -5,7 +5,7 @@ import { Navbar, Button, ButtonGroup, Nav, NavItem } from 'react-bootstrap';
 import { IndexRoute, useRouterHistory, Router, Route } from 'react-router';
 import { createHashHistory } from 'history';
 import { LinkContainer } from 'react-router-bootstrap';
-import { PureRenderMixin } from 'react-addons-pure-render-mixin';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 import { Sentence } from './Sentence';
 import { Blog } from './Blog';
 
