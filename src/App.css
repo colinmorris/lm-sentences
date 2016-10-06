@@ -9,8 +9,6 @@
   max-width: 800px;
   margin-bottom: 20px;
 }
-.sortWidget {
-}
 nav li {
   font-size: 18px;
 }
@@ -57,9 +55,6 @@ helped in the end. :(
 .footerCol-2 {
   float: left;
 }
-.Sentence-words {
-}
-
 footer {
   border-top: 1px solid #e8e8e8;
   margin-top: 15px;
@@ -84,22 +79,18 @@ footer > div {
   /*text-align: center;*/
 }
 
-h2 .glyphicon {
-  margin-left: 3ch;
-  font-size: 60%;
-}
-
-.Sentence h2 a {
-  margin-right: 1ch;
-  font-size: larger;
-}
-
 .SentenceWord {
   display: inline-block;
   padding-right: .45ch;
   padding-left: .45ch;
   min-width: 2ch;
   font-size: 22px;
+}
+
+@media (max-width: 800px) {
+  .SentenceWord {
+    font-size: 18px;
+  }
 }
 
 .SentenceWord > div {
@@ -156,6 +147,15 @@ h2 .glyphicon {
   font-size: smaller;
   margin-top: 10px;
   margin-left: 10px;
+}
+.sentenceNumber {
+  font-size: larger;
+}
+.sentenceMeta .glyphicon {
+  margin-right: 2ch;
+  margin-left: .5ch;
+  font-size: smaller;
+  color: black;
 }
 
 .metaNumber {

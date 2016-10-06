@@ -114,14 +114,16 @@ class Sentence extends Component {
     const sent = SENTENCE_DATA[this.props.corpus][this.props.sid];
     return (
       <div id={id} className="Sentence">
-      {this.props.number ? (<h3>#{id} 
+      <span className="sentenceMeta">
+      {this.props.number ? (<span className="sentenceNumber">#{id} 
       <Link to={`/${this.props.corpus}/${this.props.sid}`}>
-        <span className="glyphicon glyphicon-link"></span>
+        <span title="permalink" className="glyphicon glyphicon-link"></span>
       </Link>
-      </h3>) : null}
-      <span className="sentenceMeta"
+      </span>) : null}
+      <span
       title={`${Math.log2(sent.ppx).toFixed(1)} bits/word`}> 
         perplexity=<span className="metaNumber">{sent.ppx.toFixed(0)}</span>
+      </span>
       </span>
       <div className="Sentence-words">
         {sent.words.map( (w,i) => {
