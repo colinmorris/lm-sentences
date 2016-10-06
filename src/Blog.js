@@ -89,7 +89,7 @@ Explicit mentions of years like this are an obvious example of how the time diff
 <div className="SentWrapper"><Sentence corpus="brown_news" sid={11} /></div>
 
 <p>
-The LM has done a good job of memorizing contemporary figures like Iker Casillas or George Bush, but it doesn't do well with dated references to cold war politics.
+The LM has done a good job of memorizing contemporary figures like Iker Casillas or George Bush, but it doesn't do well with dated references to cold war politics. The top-predicted name after "Mr." is "Krushchev" again (not totally implausible). The top predicted name actually belonging to a President is "Obama", with probability 3%.
 </p>
 
 <div className="SentWrapper"><Sentence corpus="brown_news" sid={42} /></div>
