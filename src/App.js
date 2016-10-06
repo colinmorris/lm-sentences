@@ -78,9 +78,12 @@ class SentenceList extends Component {
       });
     }
     return (
-      <div>
-        <div>
-        <h3>Sort by...</h3>
+      <div className="SentenceListContent">
+        <div className="PreSentenceList">
+        <p>These are randomly selected sentences from {corpus_to_desc[corpus]} annotated with probabilities assigned by <a href="https://github.com/tensorflow/models/tree/master/lm_1b">Google's neural language model</a>, trained on the One Billion Word Benchmark. Check out <Link to="/">this post</Link> for more information.
+        </p>
+        <div className="sortWidget">
+        <span className="label label-default">Sort by...</span><br/>
         <ButtonGroup>
           <Button active={this.state.sort==='desc'} onClick={()=>{this.setState({sort:'desc'});}}>
             Least probable
@@ -90,12 +93,11 @@ class SentenceList extends Component {
           <Button active={this.state.sort===undefined} onClick={()=>{this.setState({sort:undefined});}}>
           None</Button>
         </ButtonGroup>
-        <p>These are randomly selected sentences from {corpus_to_desc[corpus]} annotated with probabilities assigned by <a href="https://github.com/tensorflow/models/tree/master/lm_1b">Google's neural language model</a>, trained on the One Billion Word Benchmark. Check out <Link to="/">this post</Link> for more information.
-        </p>
+        </div>
         </div>
 
         {indices.map( (i) => {
-          return <span key={i}><Sentence sid={i} corpus={corpus} number={true} /><br /></span>})}
+          return <div key={i}><Sentence sid={i} corpus={corpus} number={true} /></div>})}
         {this.state.maxSentences < sentences.length ? 
           <div className="center-block moreButtons" style={{width:'20%', marginTop: 10}}>
             <Button bsStyle="primary" bsSize="large" onClick={this.more}>

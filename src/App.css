@@ -1,6 +1,16 @@
 .navbar-brand {
   font-size: 24px;
 }
+.SentenceListContent > * {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.PreSentenceList p {
+  max-width: 800px;
+  margin-bottom: 20px;
+}
+.sortWidget {
+}
 nav li {
   font-size: 18px;
 }
@@ -70,9 +80,7 @@ footer > div {
   padding: 5px;
   margin-top: 30px;
   margin-bottom: 30px;
-  max-width: 90%;
   display: inline-block;
-  margin-left: 5%;
   /*text-align: center;*/
 }
 
@@ -88,8 +96,8 @@ h2 .glyphicon {
 
 .SentenceWord {
   display: inline-block;
-  padding-right: .5ch;
-  padding-left: .5ch;
+  padding-right: .45ch;
+  padding-left: .45ch;
   min-width: 2ch;
   font-size: 22px;
 }

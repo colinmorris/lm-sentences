@@ -55,7 +55,9 @@ This is a good example of fitting closely to the corpus. In the grand scheme of 
 </p>
 
 <p>
-But before we dismiss this as mere memorization, it's worth noting that there are only three occurrences of <code>^Goalkeepers :.*Iker</code> in the training set, and 0 occurrences of <code>^Goalkeepers :.*Jose Reina</code>. Assigning a 35% probability to "Reina" actually shows some pretty impressive generalization. It's never seen Jose Reina's name in a sentence with this format - it had to learn that it was a good fit from reading other kinds of sentences like "Liverpool 's Jose Reina was the only goalkeeper to make a genuine save".
+But before we dismiss this as mere memorization, it's worth noting the model has never seen this exact sentence. In fact, it's never even see Jose Reina's name in a sentence with this format.
+Assigning a 35% probability to "Reina" actually shows some pretty good generalization. 
+Jose Reina is only the 20th most frequent "Jose" in the corpus. The model had to learn that Jose Reina was a better fit than Jose Canseco or Jose Mourinho from reading sentences like "Liverpool 's Jose Reina was the only goalkeeper to make a genuine save".
 </p>
 
 <div className="SentWrapper"><Sentence corpus="bill" sid={181} /></div>
@@ -75,7 +77,7 @@ This kind of thing doesn't really detract from the results reported for the lang
 <h2 className="title">Other Corpora</h2>
 
 <p>
-If overfitting is a fear, it'd be interesting to see how the language model does on sentences from a different corpus. Let's start with the news segment of the <a href="https://en.wikipedia.org/wiki/Brown_Corpus">Brown Corpus</a>. We're still in the news genre, but we're going back in time to 1961.
+If overfitting is a fear, it'd be interesting to see how the language model does on sentences from a different corpus. Let's start with the news segment of the <a href="https://en.wikipedia.org/wiki/Brown_Corpus">Brown Corpus</a>. We're still in the news genre, but we're going back in time 50 years to 1961.
 </p>
 
 <div className="SentWrapper"><Sentence corpus="brown_news" sid={59} /></div>
