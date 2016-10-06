@@ -86,3 +86,14 @@ h2 .glyphicon {
   color: white;
 }
 
+.sentenceMeta {
+  font-family: courier, monospace;
+  font-size: smaller;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.metaNumber {
+  font-size: larger;
+}
+

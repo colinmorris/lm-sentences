@@ -71,7 +71,7 @@ class SentenceList extends Component {
     }
     return (
       <div>
-        Sort by...
+        <h3>Sort by...</h3>
         <ButtonGroup>
           <Button active={this.state.sort==='desc'} onClick={()=>{this.setState({sort:'desc'});}}>
             Least probable

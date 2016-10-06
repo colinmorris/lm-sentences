@@ -119,8 +119,10 @@ class Sentence extends Component {
         <span className="glyphicon glyphicon-link"></span>
       </Link>
       </h3>) : null}
-      <h4>Avg. bits/word: {Math.log2(sent.ppx).toFixed(1)}. 
-      Perplexity: {sent.ppx.toFixed(0)}</h4>
+      <span className="sentenceMeta"
+      title={`${Math.log2(sent.ppx).toFixed(1)} bits/word`}> 
+        perplexity=<span className="metaNumber">{sent.ppx.toFixed(0)}</span>
+      </span>
       <div className="Sentence-words">
         {sent.words.map( (w,i) => {
           return (
